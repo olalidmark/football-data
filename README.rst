@@ -1,7 +1,7 @@
 Football Data Parser
 =======================
 
-This is a Wrapper over the data sets provided at `football-data.co.uk<http://www.football-data.co.uk/data.php>`_
+This is a Wrapper over the data sets provided at http://www.football-data.co.uk/data.php
 The aim of the project is to easily retrieve historical football data like shots on goal, scored goals etc.
 from all major european football/soccer teams.
 
