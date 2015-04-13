@@ -1,10 +1,10 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='football-data',
     version='0.1',
     packages=['football-data'],
-    url='',
+    url='https://github.com/olalidmark/football-data',
     license='MIT',
     author='fantomen',
     author_email='olalidmark@gmail.com',
