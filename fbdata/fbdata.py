@@ -7,7 +7,7 @@ import datetime
 import numpy as np
 
 
-class fb_data_parser:
+class fbDataParser:
     NAMES = {
         'Manchester United': 'Man United',
         'Manchester City': 'Man City',
@@ -143,7 +143,7 @@ class fb_data_parser:
 
 if __name__ == '__main__':
     # Example usage:
-    with fb_data_parser() as parser:
+    with fbDataParser() as parser:
         print parser.get_stats_for_game("Liverpool", "AstonVilla",
                                         datetime.datetime.strptime("2014-09-13", "%Y-%m-%d").date())
         print parser.get_historical_data_for_team("Liverpool",
