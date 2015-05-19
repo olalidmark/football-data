@@ -3,3 +3,4 @@ dist/*
 build/*
 football_data.egg-info/*
 demo.py
+*.pyc

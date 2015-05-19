@@ -41,7 +41,11 @@ class fbDataParser:
         'http://www.football-data.co.uk/mmz4281/1415/G1.csv',
         'http://www.football-data.co.uk/mmz4281/1314/G1.csv',
         'http://www.football-data.co.uk/mmz4281/1415/E2.csv',
-        'http://www.football-data.co.uk/mmz4281/1314/E2.csv'
+        'http://www.football-data.co.uk/mmz4281/1314/E2.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2014.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2015.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2014.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2015.csv'
 
     }
 
@@ -86,9 +90,9 @@ class fbDataParser:
         game = []
         try:
             game = filter(lambda g: g['Date'] == game_date and (
-            SequenceMatcher(None, home_team_name, g['HomeTeam']).ratio() > 0.6 or SequenceMatcher(None,
+            SequenceMatcher(None, home_team_name, g['HomeTeam']).ratio() > 0.8 or SequenceMatcher(None,
                                                                                                   visiting_team_name, g[
-                    'AwayTeam']).ratio() > 0.6), self.games)[0]
+                    'AwayTeam']).ratio() > 0.8), self.games)[0]
         except IndexError:
             print "could not find game %s - %s at %s" % ( home_team_name, visiting_team_name, game_date)
         return game
@@ -127,11 +131,11 @@ class fbDataParser:
         try:
             games = map(lambda fg: self.get_field(team_name, fg, field, place), sorted(filter(
                 lambda g: g['Date'] < from_date and (
-                SequenceMatcher(None, team_name, g['HomeTeam']).ratio() > 0.6 or SequenceMatcher(None, team_name, g[
-                    'AwayTeam']).ratio() > 0.6), self.games), key=lambda g: g["Date"], reverse=True)[:int(depth * 2.5)])
+                SequenceMatcher(None, team_name, g['HomeTeam']).ratio() > 0.8 or SequenceMatcher(None, team_name, g[
+                    'AwayTeam']).ratio() > 0.8), self.games), key=lambda g: g["Date"], reverse=True)[:int(depth * 2.5)])
         except IndexError:
             print "could not find games for %s from %s" % ( team_name, from_date)
-        l = list(reversed(filter(None, games)))
+        l = list(reversed([x for x in games if x is not None]))
 
         if len(l) >= depth:
             return l[-depth:]

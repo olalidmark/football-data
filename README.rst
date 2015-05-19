@@ -9,3 +9,5 @@ A usage example is located in the main-method.
 
 Available data differs between leagues.
 The fields that can be fetched are listed here: http://www.football-data.co.uk/notes.txt
+
+The top-two divisions of Sweden are also parsed. Data fetched from here: http://www.stryktipsetisistastund.se/data
