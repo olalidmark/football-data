@@ -52,7 +52,15 @@ class fbDataParser:
         'Arminia Bielefeld': 'Bielefeld',
         'FC St. Pauli': 'St Pauli',
         'Dundee FC': 'Dundee',
-        'Jönköpings Södra IF': 'Jönköpings Södra'
+        'Jönköpings Södra IF': 'Jönköpings Södra',
+        'Swindon Town': 'Swindon',
+        'Scunthorpe United': 'Scunthorpe',
+        'Coventry City': 'Coventry',
+        'Colchester United': 'Colchester',
+        'Carlisle United': 'Carlisle',
+        'Stevenage Football Club': 'Stevenage',
+        'Tranmere Rovers': 'Tranmere',
+        'Hartlepool': 'Hartlepool'
     }
 
     LEAGUES = {
