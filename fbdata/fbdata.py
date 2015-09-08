@@ -60,7 +60,11 @@ class fbDataParser:
         'Carlisle United': 'Carlisle',
         'Stevenage Football Club': 'Stevenage',
         'Tranmere Rovers': 'Tranmere',
-        'Hartlepool': 'Hartlepool'
+        'Hartlepool United': 'Hartlepool',
+        'Shrewsbury Town': 'Shrewsbury',
+        'FC Köln': 'FC Koln',
+        'Almería': 'Almeria',
+        'Tarragona': 'Gimnastic'
     }
 
     LEAGUES = {
@@ -160,7 +164,7 @@ class fbDataParser:
     def get_field(self, team_name, row, field, place, inverse):
         r = None
 
-        if row["HomeTeam"] == team_name:
+        if SequenceMatcher(None, team_name, row["HomeTeam"]).ratio() > 0.8:
             if place == "away": return
             if inverse:
                 key = "A" + field
@@ -215,8 +219,7 @@ class fbDataParser:
             ret = a[-depth:]
 
         if ret.count(0) > depth / 2:
-            print "WARNING: Data may not have been found for: " + team_name.encode("UTF-8")
-
+            print "WARNING: Data may not have been found for: " + team_name
         return ret
 
 
@@ -225,6 +228,6 @@ if __name__ == '__main__':
     with fbDataParser() as parser:
         print parser.get_stats_for_game("Liverpool", "AstonVilla",
                                         datetime.datetime.strptime("2014-09-13", "%Y-%m-%d").date())
-        print parser.get_historical_data_for_team("Chelsea",
+        print parser.get_historical_data_for_team("IFK Norrköping",
                                                   datetime.datetime.strptime("2015-09-07", "%Y-%m-%d").date(),
                                                   inverse=True)
