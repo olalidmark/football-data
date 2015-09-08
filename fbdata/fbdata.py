@@ -67,7 +67,7 @@ class fbDataParser:
         'Tarragona': 'Gimnastic'
     }
 
-    LEAGUES = {
+    LEAGUES = [
         'http://www.football-data.co.uk/mmz4281/1516/E0.csv',
         'http://www.football-data.co.uk/mmz4281/1415/E0.csv',
         'http://www.football-data.co.uk/mmz4281/1314/E0.csv',
@@ -102,8 +102,7 @@ class fbDataParser:
         'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2015.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2014.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2015.csv'
-
-    }
+    ]
 
     games = []
 
@@ -111,13 +110,29 @@ class fbDataParser:
         d['Date'] = datetime.datetime.strptime(d['Date'], "%d/%m/%y").date()
         return d
 
-    def __init__(self, url=None):
+
+    def read_urls(self, urls):
+        for u in urls:
+            try:
+                url = u
+            except KeyError:
+                self.games = []
+                continue
+            remote_file = urllib.urlopen(url)
+            reader = csv.DictReader(remote_file.readlines())
+            self.games += reader
+
+
+    def __init__(self, url=None, urls=None):
         self.games = []
         if url:
             remote_file = urllib.urlopen(url)
             reader = csv.DictReader(remote_file.readlines())
             self.games = reader
+        elif urls:
+            self.read_urls(urls)
         else:
+            self.read_urls(self.LEAGUES)
             for l in self.LEAGUES:
                 try:
                     url = l
