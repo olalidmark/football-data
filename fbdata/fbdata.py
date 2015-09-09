@@ -101,7 +101,7 @@ class fbDataParser:
         'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2014.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2015.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2014.csv',
-        'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2015.csv'
+        'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2015.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Norra2015.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2015.csv'
     ]
