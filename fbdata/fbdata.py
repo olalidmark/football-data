@@ -125,7 +125,8 @@ class fbDataParser:
             self.games += reader
 
 
-    def __init__(self, url=None, urls=None):
+    def __init__(self, url=None, urls=None, silent=False):
+        self.silent = silent
         self.games = []
         if url:
             remote_file = urllib.urlopen(url)
@@ -135,15 +136,6 @@ class fbDataParser:
             self.read_urls(urls)
         else:
             self.read_urls(self.LEAGUES)
-            for l in self.LEAGUES:
-                try:
-                    url = l
-                except KeyError:
-                    self.games = []
-                    continue
-                remote_file = urllib.urlopen(url)
-                reader = csv.DictReader(remote_file.readlines())
-                self.games += reader
 
         self.games = map(lambda g: self.parse_date(g), self.games)
 
@@ -197,7 +189,8 @@ class fbDataParser:
         try:
             r = row[key]
         except KeyError:
-            print "could not find key %s for %s" % (key, team_name)
+            if not self.silent:
+                print "could not find key %s for %s" % (key, team_name)
             r = 0
         try:
             r = int(r)
@@ -236,7 +229,8 @@ class fbDataParser:
             ret = a[-depth:]
 
         if ret.count(0) > depth / 2:
-            print "WARNING: Data may not have been found for: " + team_name
+            if not self.silent:
+                print "WARNING: Data may not have been found for: " + team_name
         return ret
 
 
@@ -245,6 +239,6 @@ if __name__ == '__main__':
     with fbDataParser() as parser:
         print parser.get_stats_for_game("Liverpool", "AstonVilla",
                                         datetime.datetime.strptime("2014-09-13", "%Y-%m-%d").date())
-        print parser.get_historical_data_for_team("IFK Norrköping",
-                                                  datetime.datetime.strptime("2015-09-07", "%Y-%m-%d").date(),
+        print parser.get_historical_data_for_team("GAsdssdIS",
+                                                  datetime.datetime.strptime("2015-09-14", "%Y-%m-%d").date(),
                                                   inverse=True)
