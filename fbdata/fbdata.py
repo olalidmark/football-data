@@ -13,9 +13,12 @@ class fbDataParser:
         'Manchester City': 'Man City',
         'Queens PR': 'QPR',
         'West Bromwich': 'West Brom',
+        'W Bromwich': 'West Brom',
         'Oldham Athletic': 'Oldham',
         'Bayern München': 'Bayern Munich',
+        'B München': 'Bayern Munich',
         'Borussia Mönchengladbach': 'M\'gladbach',
+        'Mönchengl': 'M\'gladbach',
         'Crewe Alexandra': 'Crewe',
         'Fleetwood': 'Fleetwood Town',
         'Preston North End': 'Preston',
@@ -40,6 +43,7 @@ class fbDataParser:
         'Racing Santander': 'Santander',
         'Borussia Dortmund': 'Dortmund',
         'Hertha Berlin': 'Hertha',
+        'H Berlin': 'Hertha',
         'FSV Mainz': 'Mainz',
         'FC Nürnberg': 'Nürnberg',
         'Eintracht Braunschweig': 'Braunschweig',
@@ -64,7 +68,13 @@ class fbDataParser:
         'Shrewsbury Town': 'Shrewsbury',
         'FC Köln': 'FC Koln',
         'Almería': 'Almeria',
-        'Tarragona': 'Gimnastic'
+        'Tarragona': 'Gimnastic',
+        'Dalkurd FF': 'Dalkurd',
+        'SV Darmstadt 98': 'Darmstadt',
+        'GFC Ajaccio': 'Ajaccio GFCO',
+        'ES Troyes AC': 'Troyes',
+        'Viking Stavanger': 'Viking FK',
+        'Odd Grenland': 'Odd'
     }
 
     LEAGUES = [
@@ -100,10 +110,15 @@ class fbDataParser:
         'http://www.football-data.co.uk/mmz4281/1314/E2.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2014.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2015.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Allsvenskan2016.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2014.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2015.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Superettan2016.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Norra2015.csv',
-        'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2015.csv'
+        'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2015.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Div1Norra2016.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2016.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/tippeligaen2016.csv'
     ]
 
     games = []
@@ -111,7 +126,6 @@ class fbDataParser:
     def parse_date(self, d):
         d['Date'] = datetime.datetime.strptime(d['Date'], "%d/%m/%y").date()
         return d
-
 
     def read_urls(self, urls):
         for u in urls:
@@ -123,7 +137,6 @@ class fbDataParser:
             remote_file = urllib.urlopen(url)
             reader = csv.DictReader(remote_file.readlines())
             self.games += reader
-
 
     def __init__(self, url=None, urls=None, silent=False):
         self.silent = silent
@@ -166,9 +179,8 @@ class fbDataParser:
                                                                                                           'AwayTeam']).ratio() > 0.8),
                           self.games)[0]
         except IndexError:
-            print "could not find game %s - %s at %s" % ( home_team_name, visiting_team_name, game_date)
+            print "could not find game %s - %s at %s" % (home_team_name, visiting_team_name, game_date)
         return game
-
 
     def get_field(self, team_name, row, field, place, inverse):
         r = None
@@ -198,7 +210,6 @@ class fbDataParser:
             r = 0
         return r
 
-
     def get_historical_data_for_team(self, team_name, from_date, field="S", place="both", depth=10, inverse=False):
         """Get historic data of a single field for a team starting at a certain date. Available fields are described here: http://www.football-data.co.uk/notes.txt
         :param team_name: Name of team
@@ -216,7 +227,7 @@ class fbDataParser:
                         'AwayTeam']).ratio() > 0.8), self.games), key=lambda g: g["Date"], reverse=True)[
                                                                                          :int(depth * 2.5)])
         except IndexError:
-            print "could not find games for %s from %s" % ( team_name, from_date)
+            print "could not find games for %s from %s" % (team_name, from_date)
         l = list(reversed([x for x in games if x is not None]))
 
         ret = []
@@ -239,6 +250,9 @@ if __name__ == '__main__':
     with fbDataParser() as parser:
         print parser.get_stats_for_game("Liverpool", "AstonVilla",
                                         datetime.datetime.strptime("2014-09-13", "%Y-%m-%d").date())
-        print parser.get_historical_data_for_team("GAsdssdIS",
-                                                  datetime.datetime.strptime("2015-09-14", "%Y-%m-%d").date(),
-                                                  inverse=True)
+        print parser.get_historical_data_for_team("GAIS",
+                                                  datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(), depth=23)
+
+        print parser.get_historical_data_for_team("Rosenborg",
+                                                  datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(),
+                                                  inverse=True, depth=3)
