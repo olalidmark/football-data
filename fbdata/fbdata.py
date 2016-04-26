@@ -74,7 +74,9 @@ class fbDataParser:
         'GFC Ajaccio': 'Ajaccio GFCO',
         'ES Troyes AC': 'Troyes',
         'Viking Stavanger': 'Viking FK',
-        'Odd Grenland': 'Odd'
+        'Odd Grenland': 'Odd',
+        'Crystal P': 'Crystal Palace',
+        'Paris Saint Germain': 'Paris SG'
     }
 
     LEAGUES = [
