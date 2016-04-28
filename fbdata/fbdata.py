@@ -76,7 +76,14 @@ class fbDataParser:
         'Viking Stavanger': 'Viking FK',
         'Odd Grenland': 'Odd',
         'Crystal P': 'Crystal Palace',
-        'Paris Saint Germain': 'Paris SG'
+        'Paris Saint Germain': 'Paris SG',
+        'AZ Alkmaar': 'AZ',
+        'Twente': 'FC Twente',
+        'PSV Eindhoven': 'PSV',
+        'Cambuur': 'SC Cambuur Leeuwarden',
+        'Nijmegen': 'N.E.C.',
+        'Roda': 'Roda JC Kerkrade',
+        'Vitesse Arnheim': 'Vitesse'
     }
 
     LEAGUES = [
