@@ -83,7 +83,16 @@ class fbDataParser:
         'Cambuur': 'SC Cambuur Leeuwarden',
         'Nijmegen': 'N.E.C.',
         'Roda': 'Roda JC Kerkrade',
-        'Vitesse Arnheim': 'Vitesse'
+        'Vitesse Arnheim': 'Vitesse',
+        'HJK Helsinki': 'HJK',
+        'Rovaniemi Palloseura': 'RoPS',
+        'FC Inter Turku': 'FC Inter',
+        'Seinajoen JK': 'SJK',
+        'Vaasa PS': 'VPS',
+        'Kuopio PS': 'KuPS',
+        'FC Ilves': 'Ilves',
+        'PS Kemi Kings': 'PS Kemi'
+
     }
 
     LEAGUES = [
@@ -127,7 +136,8 @@ class fbDataParser:
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2015.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Norra2016.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2016.csv',
-        'https://s3-eu-west-1.amazonaws.com/tipset/tippeligaen2016.csv'
+        'https://s3-eu-west-1.amazonaws.com/tipset/tippeligaen2016.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/Veikkausliiga2016.csv'
     ]
 
     games = []
@@ -262,6 +272,6 @@ if __name__ == '__main__':
         print parser.get_historical_data_for_team("GAIS",
                                                   datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(), depth=23)
 
-        print parser.get_historical_data_for_team("Rosenborg",
+        print parser.get_historical_data_for_team("HJK",
                                                   datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(),
                                                   inverse=True, depth=3)
