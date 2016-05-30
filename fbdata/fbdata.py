@@ -91,7 +91,8 @@ class fbDataParser:
         'Vaasa PS': 'VPS',
         'Kuopio PS': 'KuPS',
         'FC Ilves': 'Ilves',
-        'PS Kemi Kings': 'PS Kemi'
+        'PS Kemi Kings': 'PS Kemi',
+        'Halmstads BK': 'Halmstad'
 
     }
 
