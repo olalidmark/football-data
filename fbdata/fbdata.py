@@ -97,7 +97,8 @@ class fbDataParser:
         'Ålborg': 'AaB Ålborg',
         'Odense': 'Odense Boldklub',
         'Viborg': 'Viborg FF',
-        'Sönderjyske Fodbold': 'SønderjyskE'
+        'Sönderjyske Fodbold': 'SønderjyskE',
+        'Strömsgodset Toppfotball': 'Strömsgodset'
 
     }
 
