@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='football-data',
-    version='0.1.14',
+    version='0.1.15',
     packages=['fbdata'],
     url='https://github.com/olalidmark/football-data',
     license='MIT',

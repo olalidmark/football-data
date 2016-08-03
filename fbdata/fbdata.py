@@ -92,7 +92,12 @@ class fbDataParser:
         'Kuopio PS': 'KuPS',
         'FC Ilves': 'Ilves',
         'PS Kemi Kings': 'PS Kemi',
-        'Halmstads BK': 'Halmstad'
+        'Halmstads BK': 'Halmstad',
+        'Århus' : 'AGF Aarhus',
+        'Ålborg': 'AaB Ålborg',
+        'Odense': 'Odense Boldklub',
+        'Viborg': 'Viborg FF',
+        'Sönderjyske Fodbold': 'SønderjyskE'
 
     }
 
@@ -138,7 +143,8 @@ class fbDataParser:
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Norra2016.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/Div1Sodra2016.csv',
         'https://s3-eu-west-1.amazonaws.com/tipset/tippeligaen2016.csv',
-        'https://s3-eu-west-1.amazonaws.com/tipset/Veikkausliiga2016.csv'
+        'https://s3-eu-west-1.amazonaws.com/tipset/Veikkausliiga2016.csv',
+        'https://s3-eu-west-1.amazonaws.com/tipset/danska-superligan2016.csv'
     ]
 
     games = []
@@ -273,6 +279,6 @@ if __name__ == '__main__':
         print parser.get_historical_data_for_team("GAIS",
                                                   datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(), depth=23)
 
-        print parser.get_historical_data_for_team("HJK",
+        print parser.get_historical_data_for_team("Silkeborg",
                                                   datetime.datetime.strptime("2016-09-01", "%Y-%m-%d").date(),
                                                   inverse=True, depth=3)
