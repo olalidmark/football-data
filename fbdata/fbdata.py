@@ -88,6 +88,7 @@ class fbDataParser:
         'Rovaniemi Palloseura': 'RoPS',
         'FC Inter Turku': 'FC Inter',
         'Seinajoen JK': 'SJK',
+        'Seinäjoen JK': 'SJK',
         'Vaasa PS': 'VPS',
         'Kuopio PS': 'KuPS',
         'FC Ilves': 'Ilves',
@@ -98,8 +99,10 @@ class fbDataParser:
         'Odense': 'Odense Boldklub',
         'Viborg': 'Viborg FF',
         'Sönderjyske Fodbold': 'SønderjyskE',
-        'Strömsgodset Toppfotball': 'Strömsgodset'
-
+        'Strömsgodset Toppfotball': 'Strömsgodset',
+        'Start': 'IK Start',
+        'Stabaek' : 'Stabæk',
+        'Ålesunds FK': 'Ålesund'
     }
 
     LEAGUES = [
@@ -151,7 +154,10 @@ class fbDataParser:
     games = []
 
     def parse_date(self, d):
-        d['Date'] = datetime.datetime.strptime(d['Date'], "%d/%m/%y").date()
+        try:
+            d['Date'] = datetime.datetime.strptime(d['Date'], "%d/%m/%y").date()
+        except ValueError:
+            d['Date'] = datetime.datetime.strptime("01/01/70", "%d/%m/%y").date()
         return d
 
     def read_urls(self, urls):
@@ -205,7 +211,7 @@ class fbDataParser:
                                                                                                       g[
                                                                                                           'AwayTeam']).ratio() > 0.8),
                           self.games)[0]
-        except IndexError:
+        except IndexError, ValueError:
             print "could not find game %s - %s at %s" % (home_team_name, visiting_team_name, game_date)
         return game
 
