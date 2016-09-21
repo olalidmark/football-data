@@ -145,7 +145,8 @@ class fbDataParser:
         'Oldham Athletic AFC': 'Oldham',
         'Peterborough United FC': 'Peterboro',
         'Oxford United FC': 'Oxford',
-        'Lyngby': 'Lyngby BK'
+        'Lyngby': 'Lyngby BK',
+        'West Ham United FC': 'West Ham'
 
     }
 
