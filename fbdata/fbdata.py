@@ -146,7 +146,10 @@ class fbDataParser:
         'Peterborough United FC': 'Peterboro',
         'Oxford United FC': 'Oxford',
         'Lyngby': 'Lyngby BK',
-        'West Ham United FC': 'West Ham'
+        'West Ham United FC': 'West Ham',
+        'Southend United': 'Southend',
+        'Bradford City AFC': 'Bradford',
+        'SC Bastia': 'Bastia'
 
     }
 
